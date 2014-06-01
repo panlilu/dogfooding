@@ -1,0 +1,26 @@
+h4
+  span = @user.name
+  span @
+  span = @user.team
+
+.row
+  .col-xs-6
+    span: b Date - Week
+  .col-xs-3
+    span: b Lunch
+  .col-xs-3
+    span: b Dinner
+- (Date.today...10.days.since.to_date).to_a.each do |x|
+  - app = Appointment.find_or_create_by!(user_id: @user.id, at: x)
+  .row
+    .col-xs-6
+      span = "#{app.at.to_s} "
+      code = wday_to_s app.at.wday
+    .col-xs-3
+      code.text-info = yes_or_not app.lunch.value
+      code.text-error
+        = link_to app.lunch.yes? ? '[Y]' : '[N]', user_appointment_lunch_path(@user, app), method: :post
+    .col-xs-3
+      code.text-info = yes_or_not app.dinner.value
+      code.text-error
+        = link_to app.dinner.yes? ? '[Y]' : '[N]', user_appointment_dinner_path(@user, app), method: :post

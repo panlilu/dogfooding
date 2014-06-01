@@ -1,0 +1,3 @@
+- User.all.group_by(&:team).each do |team, users| 
+  h3 = team
+  = users.map do |x| "<a href='#{user_appointments_path(x)}'>#{x.name}</a>" end.join(" ").html_safe

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>DogFood</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+
+<div class="container">
+  <h3>Eating your own dog food</h3>
+  <h3><%= flash[:notice] %></h3>
+  <h3 style='color: red;'><%= flash[:alert] %></h3>
+  <h3> <%= Date.today %> LUNCH: <%= today_lunch_count %></h3>
+  <h3> <%= Date.today %> DINNER: <%= today_dinner_count %></h3>
+  <hr />
+
+  <%= yield %>
+</div>
+
+</body>
+</html>

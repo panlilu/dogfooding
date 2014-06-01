@@ -1,0 +1,7 @@
+= simple_form_for @user do |f|
+  = f.input :name
+  = f.input :team
+  .control-group
+    = f.button :submit
+hr 
+= render 'all'
