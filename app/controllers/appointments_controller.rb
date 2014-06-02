@@ -1,6 +1,7 @@
 class AppointmentsController < ApplicationController
   def index
     @user = User.find(params[:user_id])
+    cookies[:user] = @user.id
   end
 
   def dinner

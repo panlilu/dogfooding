@@ -5,4 +5,6 @@ Rails.application.routes.draw do
       post 'dinner'
     end
   end
+
+  root to: 'users#index'
 end

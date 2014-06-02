@@ -14,8 +14,8 @@
   <h3>Eating your own dog food</h3>
   <h3><%= flash[:notice] %></h3>
   <h3 style='color: red;'><%= flash[:alert] %></h3>
-  <h3> <%= Date.today %> LUNCH: <%= today_lunch_count %></h3>
-  <h3> <%= Date.today %> DINNER: <%= today_dinner_count %></h3>
+  <h4 class='text-info'> <%= Date.today %> LUNCH: <%= today_lunch_count %></h4>
+  <h4 class='text-info'> <%= Date.today %> DINNER: <%= today_dinner_count %></h4>
   <hr />
 
   <%= yield %>

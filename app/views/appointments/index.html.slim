@@ -3,6 +3,9 @@ h4
   span @
   span = @user.team
 
+  span = ' - '
+  = link_to 'EXIT', user_path(@user.id), method: :DELETE
+
 .row
   .col-xs-6
     span: b Date - Week
