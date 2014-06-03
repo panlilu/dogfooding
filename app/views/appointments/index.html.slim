@@ -22,8 +22,8 @@ h4
     .col-xs-3
       code.text-info = yes_or_not app.lunch.value
       code.text-error
-        = link_to app.lunch.yes? ? '[Y]' : '[N]', user_appointment_lunch_path(@user, app), method: :post
+        = link_to app.lunch.yes? ? '[饿]' : '[吃]', user_appointment_lunch_path(@user, app), method: :post
     .col-xs-3
       code.text-info = yes_or_not app.dinner.value
       code.text-error
-        = link_to app.dinner.yes? ? '[Y]' : '[N]', user_appointment_dinner_path(@user, app), method: :post
+        = link_to app.dinner.yes? ? '[饿]' : '[吃]', user_appointment_dinner_path(@user, app), method: :post
