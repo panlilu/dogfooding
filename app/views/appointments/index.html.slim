@@ -4,16 +4,16 @@ h4
   span = @user.team
 
   span = ' - '
-  = link_to 'EXIT', user_path(@user.id), method: :DELETE
+  = link_to '更换', user_path(@user.id), method: :DELETE
 
 .row
   .col-xs-6
-    span: b Date - Week
+    span: b 日期
   .col-xs-3
-    span: b Lunch
+    span: b 午餐
   .col-xs-3
-    span: b Dinner
-- (Date.today...10.days.since.to_date).to_a.each do |x|
+    span: b 晚餐
+- (Date.tomorrow...10.days.since.to_date).to_a.each do |x|
   - app = Appointment.find_or_create_by!(user_id: @user.id, at: x)
   .row
     .col-xs-6

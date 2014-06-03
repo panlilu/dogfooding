@@ -3,6 +3,17 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  def edit
+    @user = User.find(params[:id])
+  end
+
+  def update
+    @user = User.find(params[:id])
+    @user.update_attributes(user_params)
+    flash[:notice] = 'UPDATE DONE'
+    redirect_to action: :new
+  end
+
   def index
     if @user = User.find_by_id(cookies[:user])
       redirect_to user_appointments_path(@user)

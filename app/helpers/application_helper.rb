@@ -1,11 +1,11 @@
 module ApplicationHelper
-  DATES = %w(Sun Mon Tues Wed Thur Fri Sat)
+  DATES = %w(周日 周一 周二 周三 周四 周五 周六)
   def wday_to_s(i)
     DATES[i]
   end
 
   def yes_or_not(val)
-    val == 1 ? 'YES' : 'NOT'
+    val == 1 ? '是' : '否'
   end
 
   def all_user_count

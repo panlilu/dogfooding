@@ -4,4 +4,6 @@
   .control-group
     = f.button :submit
 hr 
-= render 'all'
+- User.all.group_by(&:team).each do |team, users| 
+  h4.text-success = team
+  = users.map do |x| "<a href='#{edit_user_path(x)}'>#{x.name}</a>" end.join(" ").html_safe

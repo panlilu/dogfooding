@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>DogFood</title>
+  <title>Dogfooding</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <link rel="apple-touch-icon" href="<%= image_path("apple-touch-icon.png") %>" />
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
@@ -13,11 +13,11 @@
 
 
 <div class="container">
-  <h3>Eating your own dog food</h3>
+  <h3>提示：当日确认无效，请提现一天确认是否取消用餐。</h3>
   <h3><%= flash[:notice] %></h3>
   <h3 style='color: red;'><%= flash[:alert] %></h3>
-  <h4 class='text-info'> <%= Date.today %> LUNCH: <%= today_lunch_count %></h4>
-  <h4 class='text-info'> <%= Date.today %> DINNER: <%= today_dinner_count %></h4>
+  <h4 class='text-info'> 今日午餐人数: <%= today_lunch_count %></h4>
+  <h4 class='text-info'> 今日晚餐人数: <%= today_dinner_count %></h4>
   <hr />
 
   <%= yield %>
