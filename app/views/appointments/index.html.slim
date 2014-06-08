@@ -13,17 +13,19 @@ h4
     span: b 午餐
   .col-xs-3
     span: b 晚餐
-- (Date.tomorrow...10.days.since.to_date).to_a.each do |x|
+- ((Date.tomorrow...10.days.since.to_date).select{|d| (1..5).include?(d.wday) }).to_a.each do |x|
   - app = Appointment.find_or_create_by!(user_id: @user.id, at: x)
   .row
     .col-xs-6
       span = "#{app.at.to_s} "
       code = wday_to_s app.at.wday
     .col-xs-3
-      code.text-info = yes_or_not app.lunch.value
+      a href=user_appointment_lunch_path(@user, app) data-method="post"
+        input type="checkbox" checked = app.lunch.yes?
       code.text-error
-        = link_to app.lunch.yes? ? '[饿]' : '[吃]', user_appointment_lunch_path(@user, app), method: :post
+        = link_to '吃饭', user_appointment_lunch_path(@user, app), method: :post
     .col-xs-3
-      code.text-info = yes_or_not app.dinner.value
+      a href=user_appointment_dinner_path(@user, app) data-method="post"
+        input type="checkbox" checked = app.dinner.yes?
       code.text-error
-        = link_to app.dinner.yes? ? '[饿]' : '[吃]', user_appointment_dinner_path(@user, app), method: :post
+        = link_to '吃饭', user_appointment_dinner_path(@user, app), method: :post
