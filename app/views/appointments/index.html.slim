@@ -1,31 +1,51 @@
 h4
+  span.glyphicon.glyphicon-user
   span = @user.name
   span @
   span = @user.team
 
   span = ' - '
-  = link_to '更换', user_path(@user.id), method: :DELETE
+  = link_to ('<span class="glyphicon glyphicon-log-in"></span> 更换').html_safe, user_path(@user.id), method: :DELETE
 
-.row
-  .col-xs-6
-    span: b 日期
-  .col-xs-3
-    span: b 午餐
-  .col-xs-3
-    span: b 晚餐
-- ((Date.tomorrow...10.days.since.to_date).select{|d| (1..5).include?(d.wday) }).to_a.each do |x|
-  - app = Appointment.find_or_create_by!(user_id: @user.id, at: x)
-  .row
-    .col-xs-6
-      span = "#{app.at.to_s} "
-      code = wday_to_s app.at.wday
-    .col-xs-3
-      a href=user_appointment_lunch_path(@user, app) data-method="post"
-        input type="checkbox" checked = app.lunch.yes?
-      code.text-error
-        = link_to '吃饭', user_appointment_lunch_path(@user, app), method: :post
-    .col-xs-3
-      a href=user_appointment_dinner_path(@user, app) data-method="post"
-        input type="checkbox" checked = app.dinner.yes?
-      code.text-error
-        = link_to '吃饭', user_appointment_dinner_path(@user, app), method: :post
+.well
+  - if (Date.today.wday.in?(1..5))
+    = '今天我的用餐状态是: '
+    - todayapp = Appointment.find_or_create_by!(user_id: @user.id, at: Date.today)
+    = todayapp.lunch.yes? ? '吃中餐' : '不吃中餐'
+    = ' ,'
+    = todayapp.dinner.yes? ? '吃晚餐' : '不吃晚餐'
+    = '.'
+  - else
+    = '今天是周末,出去吃饭吧,周末愉快 :)'
+
+table.table.table-hover
+  thead
+    tr
+      th 日期
+      th 午餐
+      th 晚餐
+  tbody
+  - ((Date.tomorrow...10.days.since.to_date).select{|d| (1..5).include?(d.wday) }).to_a.each do |x|
+    - app = Appointment.find_or_create_by!(user_id: @user.id, at: x)
+    tr
+      td
+        span = "#{app.at.to_s} "
+        code = wday_to_s app.at.wday
+      td
+        a href=user_appointment_lunch_path(@user, app) data-method="post"
+          input type="radio" checked = app.lunch.yes?
+          code.text-warning
+            = '我要吃'
+        a href=user_appointment_lunch_path(@user, app) data-method="post"
+          input type="radio" checked = !app.lunch.yes?
+          code.text-warning
+            = '不吃了'
+      td
+        a href=user_appointment_dinner_path(@user, app) data-method="post"
+          input type="radio" checked = app.dinner.yes?
+          code.text-warning
+            = '我要吃'
+        a href=user_appointment_dinner_path(@user, app) data-method="post"
+          input type="radio" checked = !app.dinner.yes?
+          code.text-warning
+            = '不吃了'
