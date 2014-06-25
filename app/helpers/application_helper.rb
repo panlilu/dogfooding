@@ -19,4 +19,13 @@ module ApplicationHelper
   def today_lunch_count
     all_user_count - Appointment.with_lunch(:no).where(at: Date.today).size
   end
+
+  def tomorrow_dinner_count
+    all_user_count - Appointment.with_dinner(:no).where(at: Date.tomorrow).size
+  end
+
+  def tomorrow_lunch_count
+    all_user_count - Appointment.with_lunch(:no).where(at: Date.tomorrow).size
+  end
+
 end

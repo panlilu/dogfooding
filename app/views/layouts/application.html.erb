@@ -18,8 +18,8 @@
   <h3><%= flash[:notice] %></h3>
   <h3 style='color: red;'><%= flash[:alert] %></h3>
 
-  <h4 class='text-info'> 今日午餐人数: <span class="badge"><%= today_lunch_count %></span></h4>
-  <h4 class='text-info'> 今日晚餐人数: <span class="badge"><%= today_dinner_count %></span></h4>
+  <h4 class='text-info'> 午餐人数 今日:<span class="badge"><%= today_lunch_count %></span> 明日:<span class="badge"><%= tomorrow_lunch_count %></span></h4>
+  <h4 class='text-info'> 晚餐人数 今日:<span class="badge"><%= today_dinner_count %></span> 明日:<span class="badge"><%= tomorrow_dinner_count %></span></h4>
   <hr />
     <div class="alert alert-warning">提示：当日确认无效，请提前一天确认是否取消用餐。</div>
   <%= yield %>
