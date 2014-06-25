@@ -1,0 +1,7 @@
+h3 = @user.name+'@'+@user.team
+hr
+= datagrid_form_for(@report, :url => admin_appointments_report_path, :html => {:class => 'form'})
+hr
+= link_to '导出为csv',admin_appointments_report_path(:format=>'csv', :params =>{appointments_report: params[:appointments_report]} )
+= datagrid_table(@report,:html=>{:class=>'table table-striped'})
+= paginate @report.assets
