@@ -9,7 +9,7 @@ module ApplicationHelper
   end
 
   def all_user_count
-    User.all.size
+    User.where("not name > 0").size
   end
 
   def today_dinner_count

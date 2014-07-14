@@ -1,3 +1,3 @@
-- User.all.group_by(&:team).each do |team, users| 
+- User.where("not name > 0").all.group_by(&:team).each do |team, users| 
   h4.text-success = team
-  = users.select{|user| user.name.match(/\A[+-]?\d+?(\.\d+)?\Z/) == nil }.map do |x| "<a href='#{user_appointments_path(x)}'>#{x.name}</a>" end.join(" ").html_safe
+  = users.map do |x| "<a href='#{user_appointments_path(x)}'>#{x.name}</a>" end.join(" ").html_safe
